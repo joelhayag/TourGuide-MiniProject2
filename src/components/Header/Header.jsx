@@ -24,7 +24,7 @@ const Header = ({ onPlaceChanged, onLoad }) => {
                 <Button>Home</Button>
                 <Button>About</Button>
                 <Button>Contact</Button>
-                <Button>Blog</Button>
+                <Button>Blogs</Button>
               </ButtonGroup>
             </div>
           </Typography>
