@@ -1,45 +1,235 @@
 import React from 'react';
-import { Autocomplete } from '@react-google-maps/api';
-import { AppBar, Toolbar, Typography, InputBase, Box } from '@material-ui/core';
+import { alpha, makeStyles } from '@material-ui/core/styles';
+import AppBar from '@material-ui/core/AppBar';
+import Toolbar from '@material-ui/core/Toolbar';
+import IconButton from '@material-ui/core/IconButton';
+import InputBase from '@material-ui/core/InputBase';
+import Badge from '@material-ui/core/Badge';
+import MenuItem from '@material-ui/core/MenuItem';
+import Menu from '@material-ui/core/Menu';
 import SearchIcon from '@material-ui/icons/Search';
+import MoreIcon from '@material-ui/icons/MoreVert';
+import HomeIcon from '@material-ui/icons/Home';
+import InfoIcon from '@material-ui/icons/Info';
+import ContactMailIcon from '@material-ui/icons/ContactMail';
+import DynamicFeedIcon from '@material-ui/icons/DynamicFeed';
 
-import Button from '@material-ui/core/Button';
-import ButtonGroup from '@material-ui/core/ButtonGroup';
+const useStyles = makeStyles((theme) => ({
+  grow: {
+    flexGrow: 1,
+  },
+  menuButton: {
+    marginRight: theme.spacing(2),
+  },
+  title: {
+    display: 'none',
+    [theme.breakpoints.up('sm')]: {
+      display: 'block',
+    },
+  },
+  search: {
+    position: 'relative',
+    borderRadius: theme.shape.borderRadius,
+    backgroundColor: alpha(theme.palette.common.white, 0.15),
+    '&:hover': {
+      backgroundColor: alpha(theme.palette.common.white, 0.25),
+    },
+    marginRight: theme.spacing(2),
+    marginLeft: 0,
+    width: '100%',
+    [theme.breakpoints.up('sm')]: {
+      marginLeft: theme.spacing(3),
+      width: 'auto',
+    },
+  },
+  searchIcon: {
+    padding: theme.spacing(0, 2),
+    height: '100%',
+    position: 'absolute',
+    pointerEvents: 'none',
+    display: 'flex',
+    alignItems: 'center',
+    justifyContent: 'center',
+  },
+  inputRoot: {
+    color: 'inherit',
+  },
+  inputInput: {
+    padding: theme.spacing(1, 1, 1, 0),
+    // vertical padding + font size from searchIcon
+    paddingLeft: `calc(1em + ${theme.spacing(4)}px)`,
+    transition: theme.transitions.create('width'),
+    width: '100%',
+    [theme.breakpoints.up('md')]: {
+      width: '20ch',
+    },
+  },
+  sectionDesktop: {
+    display: 'none',
+    [theme.breakpoints.up('md')]: {
+      display: 'flex',
+    },
+  },
+  sectionMobile: {
+    display: 'flex',
+    [theme.breakpoints.up('md')]: {
+      display: 'none',
+    },
+  },
+}));
 
-import useStyles from './styles.js';
-
-const Header = ({ onPlaceChanged, onLoad }) => {
+export default function PrimarySearchAppBar() {
   const classes = useStyles();
+  const [anchorEl, setAnchorEl] = React.useState(null);
+  const [mobileMoreAnchorEl, setMobileMoreAnchorEl] = React.useState(null);
+
+  const isMenuOpen = Boolean(anchorEl);
+  const isMobileMenuOpen = Boolean(mobileMoreAnchorEl);
+
+  const handleMobileMenuClose = () => {
+    setMobileMoreAnchorEl(null);
+  };
+
+  const handleMenuClose = () => {
+    setAnchorEl(null);
+    handleMobileMenuClose();
+  };
+
+  const handleMobileMenuOpen = (event) => {
+    setMobileMoreAnchorEl(event.currentTarget);
+  };
+
+  const menuId = 'primary-search-account-menu';
+  const renderMenu = (
+    <Menu
+      anchorEl={anchorEl}
+      anchorOrigin={{ vertical: 'top', horizontal: 'right' }}
+      id={menuId}
+      keepMounted
+      transformOrigin={{ vertical: 'top', horizontal: 'right' }}
+      open={isMenuOpen}
+      onClose={handleMenuClose}
+    >
+      <MenuItem>Profile</MenuItem>
+      <MenuItem onClick={handleMenuClose}>My account</MenuItem>
+    </Menu>
+  );
+
+  const mobileMenuId = 'primary-search-account-menu-mobile';
+  const renderMobileMenu = (
+    <Menu
+      anchorEl={mobileMoreAnchorEl}
+      anchorOrigin={{ vertical: 'top', horizontal: 'right' }}
+      id={mobileMenuId}
+      keepMounted
+      transformOrigin={{ vertical: 'top', horizontal: 'right' }}
+      open={isMobileMenuOpen}
+      onClose={handleMobileMenuClose}
+    >
+      <MenuItem>
+        <IconButton aria-label="show 0 new Home" color="inherit">
+          <Badge badgeContent={0} color="secondary">
+            <HomeIcon />
+          </Badge>
+        </IconButton>
+        <p>Home</p>
+      </MenuItem>
+      <MenuItem>
+        <IconButton aria-label="show 0 new About" color="inherit">
+          <Badge badgeContent={0} color="secondary">
+            <InfoIcon />
+          </Badge>
+        </IconButton>
+        <p>About</p>
+      </MenuItem>
+      <MenuItem>
+        <IconButton aria-label="show 0 new Contact" color="inherit">
+          <Badge badgeContent={0} color="secondary">
+            <ContactMailIcon />
+          </Badge>
+        </IconButton>
+        <p>Contact</p>
+      </MenuItem>
+      <MenuItem>
+        <IconButton aria-label="show 0 new Blogs" color="inherit">
+          <Badge badgeContent={0} color="secondary">
+            <DynamicFeedIcon />
+          </Badge>
+        </IconButton>
+        <p>Blogs</p>
+      </MenuItem>
+    </Menu>
+
+  );
 
   return (
-    <AppBar position="static">
-      <Toolbar className={classes.toolbar}>
-        <Typography variant="h5" className={classes.title}>
-          <img src="logo.png" alt="logo" height={70} />
-        </Typography>
-        <Box display="flex">
-          <Typography variant="h6" className={classes.title}>
-            <div className={classes.root}>
-              <ButtonGroup variant="contained" color="secondary" aria-label="contained primary button group">
-                <Button>Home</Button>
-                <Button>About</Button>
-                <Button>Contact</Button>
-                <Button>Blogs</Button>
-              </ButtonGroup>
+    <div className={classes.grow}>
+      <AppBar position="static">
+        <Toolbar>
+          <img src="logo.png" width={140} height={40} alt="logo" justifyContent="middle" alignItems="center" />
+          <div className={classes.search}>
+            <div className={classes.searchIcon}>
+              <SearchIcon />
             </div>
-          </Typography>
-          <Autocomplete onLoad={onLoad} onPlaceChanged={onPlaceChanged}>
-            <div className={classes.search}>
-              <div className={classes.searchIcon}>
-                <SearchIcon />
-              </div>
-              <InputBase placeholder="Search places…" classes={{ root: classes.inputRoot, input: classes.inputInput }} />
-            </div>
-          </Autocomplete>
-        </Box>
-      </Toolbar>
-    </AppBar>
+            <InputBase
+              placeholder="Search…"
+              classes={{
+                root: classes.inputRoot,
+                input: classes.inputInput,
+              }}
+              inputProps={{ 'aria-label': 'search' }}
+            />
+          </div>
+          <div className={classes.grow} />
+          <div className={classes.sectionDesktop}>
+            <MenuItem>
+              <IconButton aria-label="show 0 new Home" color="inherit">
+                <Badge badgeContent={0} color="secondary">
+                  <HomeIcon />
+                </Badge>
+              </IconButton>
+              <p>Home</p>
+            </MenuItem>
+            <MenuItem>
+              <IconButton aria-label="show 0 new About" color="inherit">
+                <Badge badgeContent={0} color="secondary">
+                  <InfoIcon />
+                </Badge>
+              </IconButton>
+              <p>About</p>
+            </MenuItem>
+            <MenuItem>
+              <IconButton aria-label="show 0 new Contact" color="inherit">
+                <Badge badgeContent={0} color="secondary">
+                  <ContactMailIcon />
+                </Badge>
+              </IconButton>
+              <p>Contact</p>
+            </MenuItem>
+            <MenuItem>
+              <IconButton aria-label="show 0 new Blogs" color="inherit">
+                <Badge badgeContent={0} color="secondary">
+                  <DynamicFeedIcon />
+                </Badge>
+              </IconButton>
+              <p>Blogs</p>
+            </MenuItem>
+          </div>
+          <div className={classes.sectionMobile}>
+            <IconButton
+              aria-label="show more"
+              aria-controls={mobileMenuId}
+              aria-haspopup="true"
+              onClick={handleMobileMenuOpen}
+              color="inherit"
+            >
+              <MoreIcon />
+            </IconButton>
+          </div>
+        </Toolbar>
+      </AppBar>
+      {renderMobileMenu}
+      {renderMenu}
+    </div>
   );
-};
-
-export default Header;
+}
