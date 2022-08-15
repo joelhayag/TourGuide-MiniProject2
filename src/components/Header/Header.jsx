@@ -1,4 +1,5 @@
 import React from 'react';
+import { Autocomplete } from '@react-google-maps/api';
 import { alpha, makeStyles } from '@material-ui/core/styles';
 import AppBar from '@material-ui/core/AppBar';
 import Toolbar from '@material-ui/core/Toolbar';
@@ -78,7 +79,7 @@ const useStyles = makeStyles((theme) => ({
   },
 }));
 
-export default function PrimarySearchAppBar() {
+const Header = ({ onPlaceChanged, onLoad }) => {
   const classes = useStyles();
   const [anchorEl, setAnchorEl] = React.useState(null);
   const [mobileMoreAnchorEl, setMobileMoreAnchorEl] = React.useState(null);
@@ -167,19 +168,14 @@ export default function PrimarySearchAppBar() {
       <AppBar position="static">
         <Toolbar>
           <img src="logo.png" width={140} height={40} alt="logo" justifyContent="middle" alignItems="center" />
-          <div className={classes.search}>
-            <div className={classes.searchIcon}>
-              <SearchIcon />
+          <Autocomplete onLoad={onLoad} onPlaceChanged={onPlaceChanged}>
+            <div className={classes.search}>
+              <div className={classes.searchIcon}>
+                <SearchIcon />
+              </div>
+              <InputBase placeholder="Search places…" classes={{ root: classes.inputRoot, input: classes.inputInput }} />
             </div>
-            <InputBase
-              placeholder="Search…"
-              classes={{
-                root: classes.inputRoot,
-                input: classes.inputInput,
-              }}
-              inputProps={{ 'aria-label': 'search' }}
-            />
-          </div>
+          </Autocomplete>
           <div className={classes.grow} />
           <div className={classes.sectionDesktop}>
             <MenuItem>
@@ -232,4 +228,6 @@ export default function PrimarySearchAppBar() {
       {renderMenu}
     </div>
   );
-}
+};
+
+export default Header;
