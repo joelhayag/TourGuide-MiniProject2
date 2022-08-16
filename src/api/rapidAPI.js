@@ -38,7 +38,7 @@ export const getWeatherData = async (lat, lng) => {
       return data;
     }
   } catch (error) {
-    // eslint-disable-next-line
+    //eslint-disable-next-line
     console.log(error);
   }
 };
