@@ -20,7 +20,7 @@ export default function App() {
       <Link to="/blogs" />
 
       {/* A <Switch> looks through its children <Route>s and
-            renders the first one that matches the current URL. */}
+      renders the first one that matches the current URL. */}
       <Switch>
         <Route path="/about">
           <About />
