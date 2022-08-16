@@ -1,14 +1,11 @@
 import React from 'react';
-import { Autocomplete } from '@react-google-maps/api';
 import { alpha, makeStyles } from '@material-ui/core/styles';
 import AppBar from '@material-ui/core/AppBar';
 import Toolbar from '@material-ui/core/Toolbar';
 import IconButton from '@material-ui/core/IconButton';
-import InputBase from '@material-ui/core/InputBase';
 import Badge from '@material-ui/core/Badge';
 import MenuItem from '@material-ui/core/MenuItem';
 import Menu from '@material-ui/core/Menu';
-import SearchIcon from '@material-ui/icons/Search';
 import MoreIcon from '@material-ui/icons/MoreVert';
 import HomeIcon from '@material-ui/icons/Home';
 import InfoIcon from '@material-ui/icons/Info';
@@ -81,7 +78,7 @@ const useStyles = makeStyles((theme) => ({
   },
 }));
 
-const Header = ({ onPlaceChanged, onLoad }) => {
+const Header = () => {
   const classes = useStyles();
   const [anchorEl, setAnchorEl] = React.useState(null);
   const [mobileMoreAnchorEl, setMobileMoreAnchorEl] = React.useState(null);
@@ -180,14 +177,6 @@ const Header = ({ onPlaceChanged, onLoad }) => {
           <MenuItem component={Link} to="/home">
             <img src="logo.png" width={140} height={40} alt="logo" justifyContent="middle" alignItems="center" />
           </MenuItem>
-          <Autocomplete onLoad={onLoad} onPlaceChanged={onPlaceChanged}>
-            <div className={classes.search}>
-              <div className={classes.searchIcon}>
-                <SearchIcon />
-              </div>
-              <InputBase placeholder="Search places…" classes={{ root: classes.inputRoot, input: classes.inputInput }} />
-            </div>
-          </Autocomplete>
           <div className={classes.grow} />
           <div className={classes.sectionDesktop}>
             <MenuItem component={Link} to="/home">
