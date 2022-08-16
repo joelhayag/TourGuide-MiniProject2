@@ -1,6 +1,5 @@
 import React, { useState, useEffect, createRef } from 'react';
 import { CircularProgress, Grid, Typography, InputLabel, MenuItem, FormControl, Select } from '@material-ui/core';
-
 import PlaceDetails from '../PlaceDetails/PlaceDetails';
 import useStyles from './styles.js';
 
@@ -14,7 +13,8 @@ const List = ({ places, type, setType, rating, setRating, childClicked, isLoadin
 
   return (
     <div className={classes.container}>
-      <Typography variant="h4">Find Food & Dining Restaurants, Hotels, and Attractions near you.</Typography>
+      <Typography variant="h4">Search Restaurants, Hotels, and Attractions near you.
+      </Typography>
       {isLoading ? (
         <div className={classes.loading}>
           <CircularProgress size="5rem" />
