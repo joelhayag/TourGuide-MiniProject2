@@ -11,6 +11,11 @@ function Contact() {
       <Grid container spacing={3} style={{ width: '100%' }}>
         <Grid item xs={12} md={8}>
           <div>Contact Page</div>
+          <div>Contact Page</div>
+          <div>Contact Page</div>
+          <div>Contact Page</div>
+          <div>Contact Page</div>
+          <div>Contact Page</div>
         </Grid>
       </Grid>
     </>
