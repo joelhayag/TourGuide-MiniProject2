@@ -20,6 +20,7 @@
   margin: 0px;
   background-color: rgb(245, 245, 245);
 
+
   height: 90vh;
   width: 50%;
 
@@ -38,9 +39,10 @@
 #contactMainTitle {
   margin: 0px;
   background-color: rgb(245, 245, 245);
+  font-size: clamp(3rem, 5rem, 6rem);
 
   position: absolute;
-  top: 40%;
+  top: 35%;
   left: 5%;
 
   border-style: solid;
@@ -52,6 +54,9 @@
 #contactMainDesc {
   margin: 0px;
   background-color: rgb(245, 245, 245);
+  
+  width: 35%;
+  height: auto;
 
   position: absolute;
   top: 50%;

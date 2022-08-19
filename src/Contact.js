@@ -15,10 +15,8 @@ function Contact() {
               <div id="contactMainTitle">
                 Contact
               </div>
-              <div>
-                <div id="contactMainDesc">
-                  Description
-                </div>
+              <div id="contactMainDesc">
+                Do you have something in mind? Please feel free to send us a message.
               </div>
             </div>
             <div id="contactInfo">
