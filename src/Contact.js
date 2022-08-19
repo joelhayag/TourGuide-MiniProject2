@@ -21,36 +21,20 @@ function Contact() {
             </div>
             <div id="contactInfo">
               <div>
-                <div>
-                  Joel Hayag
-                </div>
-                <div>
-                  Project Lead
-                </div>
-                <div>
-                  Contact details
-                </div>
-              </div>
-              <div>
-                <div>
-                  Diether Cabaning
-                </div>
-                <div>
-                  Project Member
-                </div>
-                <div>
-                  Contact details
-                </div>
-              </div>
-              <div>
-                <div>
-                  Timothy John Recio
-                </div>
-                <div>
-                  Project Member
-                </div>
-                <div>
-                  Contact details
+                <div id="contactInfoMain">
+                  <p>
+                    <strong style={{ fontSize: '25px' }}>Joel Hayag</strong><br />
+                    Project Lead <br />
+                    email: hayagjoel@gmail.com <br />
+                    <br />
+                    <strong style={{ fontSize: '25px' }}>Diether Alag Cabaning</strong><br />
+                    Project Member <br />
+                    email: cabaning.diether19@gmail.com <br />
+                    <br />
+                    <strong style={{ fontSize: '25px' }}>Timothy Recio</strong><br />
+                    Project Member <br />
+                    email: teejay.recio@gmail.com <br />
+                  </p>
                 </div>
               </div>
             </div>
