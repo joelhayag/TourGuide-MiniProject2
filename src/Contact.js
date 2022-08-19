@@ -10,7 +10,7 @@ function Contact() {
       <HeaderNoSearch />
       <Grid style={{ width: '100%' }}>
         <Grid>
-          <div id="row">
+          <div id="main">
             <div id="contactTitle">
               <div id="contactMainTitle">
                 Contact
