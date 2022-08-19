@@ -31,7 +31,7 @@ function Contact() {
                     Project Member <br />
                     email: cabaning.diether19@gmail.com <br />
                     <br />
-                    <strong style={{ fontSize: '25px' }}>Timothy Recio</strong><br />
+                    <strong style={{ fontSize: '25px' }}>Timothy John Recio</strong><br />
                     Project Member <br />
                     email: teejay.recio@gmail.com <br />
                   </p>
