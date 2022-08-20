@@ -110,7 +110,7 @@ function About() {
                       />
                       <CardContent className={classes.cardContent}>
                         <Typography>
-                          Do not look back, you are not goind that way.
+                          Do not look back, you are not going that way.
                         </Typography>
                       </CardContent>
                     </Card>
@@ -126,7 +126,7 @@ function About() {
                       />
                       <CardContent className={classes.cardContent}>
                         <Typography>
-                          My favourite think to do is to go where I have never been.
+                          My favourite thing to do is to go where I have never been.
                         </Typography>
                       </CardContent>
                     </Card>
