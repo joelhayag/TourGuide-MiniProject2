@@ -5,19 +5,19 @@ import {
   Route,
   Link,
 } from 'react-router-dom';
-import About from './About';
-import Blogs from './Blogs';
-import Contact from './Contact';
 import Home from './Home';
+import About from './About';
+import Contact from './Contact';
+import Webapp from './Webapp';
 
 export default function App() {
   return (
     <Router>
       <Link to="/" />
-      <Link to="/about" />
       <Link to="/home" />
+      <Link to="/about" />
       <Link to="/contact" />
-      <Link to="/blogs" />
+      <Link to="/webapp" />
 
       {/* A <Switch> looks through its children <Route>s and
       renders the first one that matches the current URL. */}
@@ -28,8 +28,8 @@ export default function App() {
         <Route path="/contact">
           <Contact />
         </Route>
-        <Route path="/blogs">
-          <Blogs />
+        <Route path="/webapp">
+          <Webapp />
         </Route>
         <Route path="/">
           <Home />
