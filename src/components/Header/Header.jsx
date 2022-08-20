@@ -15,7 +15,6 @@ import InfoIcon from '@material-ui/icons/Info';
 import ContactMailIcon from '@material-ui/icons/ContactMail';
 import DynamicFeedIcon from '@material-ui/icons/DynamicFeed';
 import { Link } from 'react-router-dom';
-import MenuIcon from '@material-ui/icons/Menu';
 
 const useStyles = makeStyles((theme) => ({
   grow: {
@@ -159,7 +158,7 @@ const Header = ({ onPlaceChanged, onLoad }) => {
             <DynamicFeedIcon />
           </Badge>
         </IconButton>
-        <p>TourGuide App</p>
+        <p>Web App</p>
       </MenuItem>
     </Menu>
 
@@ -169,14 +168,6 @@ const Header = ({ onPlaceChanged, onLoad }) => {
     <div className={classes.grow}>
       <AppBar position="static">
         <Toolbar>
-          <IconButton
-            edge="start"
-            className={classes.menuButton}
-            color="inherit"
-            aria-label="open drawer"
-          >
-            <MenuIcon />
-          </IconButton>
           <MenuItem component={Link} to="/home">
             <img src="logo.png" width={140} height={40} alt="logo" justifyContent="middle" alignItems="center" />
           </MenuItem>
@@ -220,7 +211,7 @@ const Header = ({ onPlaceChanged, onLoad }) => {
                   <DynamicFeedIcon />
                 </Badge>
               </IconButton>
-              <p>TourGuide App</p>
+              <p>Web App</p>
             </MenuItem>
           </div>
           <div className={classes.sectionMobile}>

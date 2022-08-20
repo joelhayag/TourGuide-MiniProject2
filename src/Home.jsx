@@ -57,13 +57,13 @@ function Home() {
                   <h1>Adventure Awaits</h1>
                 </Typography>
                 <Typography variant="h5" align="center" color="textSecondary" paragraph>
-                  <h3>Plan your travel ahead by using our</h3>
+                  <h3>Plan your travel ahead by using our Tour Guide Web Application.</h3>
                 </Typography>
                 <div className={classes.heroButtons}>
                   <Grid container spacing={2} justifyContent="center">
                     <Grid item>
                       <Button href="/webapp" variant="contained" color="primary">
-                        <h2>Tour Guide Web Application</h2>
+                        <h2>GET STARTED NOW</h2>
                       </Button>
                     </Grid>
                   </Grid>
