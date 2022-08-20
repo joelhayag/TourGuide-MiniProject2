@@ -150,13 +150,13 @@ const Header = () => {
         </IconButton>
         <p>Contact</p>
       </MenuItem>
-      <MenuItem component={Link} to="/blogs">
+      <MenuItem component={Link} to="/webapp">
         <IconButton aria-label="show 0 new Blogs" color="inherit">
           <Badge badgeContent={0} color="secondary">
             <DynamicFeedIcon />
           </Badge>
         </IconButton>
-        <p>Blogs</p>
+        <p>TourGuide App</p>
       </MenuItem>
     </Menu>
 
@@ -203,13 +203,13 @@ const Header = () => {
               </IconButton>
               <p>Contact</p>
             </MenuItem>
-            <MenuItem component={Link} to="/blogs">
-              <IconButton aria-label="show 0 new Blogs" color="inherit">
+            <MenuItem component={Link} to="/webapp">
+              <IconButton aria-label="show 0 new Tour App" color="inherit">
                 <Badge badgeContent={0} color="secondary">
                   <DynamicFeedIcon />
                 </Badge>
               </IconButton>
-              <p>Blogs</p>
+              <p>TourGuide App</p>
             </MenuItem>
           </div>
           <div className={classes.sectionMobile}>

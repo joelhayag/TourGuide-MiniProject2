@@ -13,7 +13,7 @@ const List = ({ places, type, setType, rating, setRating, childClicked, isLoadin
 
   return (
     <div className={classes.container}>
-      <Typography variant="h5">Search Restaurants, Hotels, and Attractions near you.
+      <Typography variant="h5">Search Restaurants, Hotels, and Attractions near you and from anywhere around the globe.
       </Typography>
       {isLoading ? (
         <div className={classes.loading}>
