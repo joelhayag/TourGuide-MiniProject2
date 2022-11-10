@@ -1,80 +1,93 @@
-import React from 'react';
+import React, { useState, useEffect } from 'react';
 import { CssBaseline, Grid } from '@material-ui/core';
-import Button from '@material-ui/core/Button';
-import Typography from '@material-ui/core/Typography';
-import Container from '@material-ui/core/Container';
-import { makeStyles } from '@material-ui/core/styles';
-import HeaderNoSearch from './components/HeaderNoSearch/HeaderNoSearch';
-import './Style.css';
 
-const useStyles = makeStyles((theme) => ({
-  icon: {
-    marginRight: theme.spacing(2),
-  },
-  heroContent: {
-    backgroundColor: theme.palette.background.paper,
-    padding: theme.spacing(8, 0, 6),
-  },
-  heroButtons: {
-    marginTop: theme.spacing(4),
-  },
-  cardGrid: {
-    paddingTop: theme.spacing(8),
-    paddingBottom: theme.spacing(8),
-  },
-  card: {
-    height: '100%',
-    display: 'flex',
-    flexDirection: 'column',
-  },
-  cardMedia: {
-    paddingTop: '56.25%', // 16:9
-  },
-  cardContent: {
-    flexGrow: 1,
-  },
-  footer: {
-    backgroundColor: theme.palette.background.paper,
-    padding: theme.spacing(6),
-  },
-}));
+import { getPlacesData, getWeatherData } from './api/rapidAPI';
+import Header from './components/Header/Header';
+import List from './components/List/List';
+import Map from './components/Map/Map';
 
-function Home() {
-  const classes = useStyles();
+const Webapp = () => {
+  const [type, setType] = useState('restaurants');
+  const [rating, setRating] = useState('');
+
+  const [coords, setCoords] = useState({});
+  const [bounds, setBounds] = useState(null);
+
+  const [weatherData, setWeatherData] = useState([]);
+  const [filteredPlaces, setFilteredPlaces] = useState([]);
+  const [places, setPlaces] = useState([]);
+
+  const [autocomplete, setAutocomplete] = useState(null);
+  const [childClicked, setChildClicked] = useState(null);
+  const [isLoading, setIsLoading] = useState(false);
+
+  useEffect(() => {
+    navigator.geolocation.getCurrentPosition(({ coords: { latitude, longitude } }) => {
+      setCoords({ lat: latitude, lng: longitude });
+    });
+  }, []);
+
+  useEffect(() => {
+    const filtered = places.filter((place) => Number(place.rating) > rating);
+
+    setFilteredPlaces(filtered);
+  }, [rating]);
+
+  useEffect(() => {
+    if (bounds) {
+      setIsLoading(true);
+
+      getWeatherData(coords.lat, coords.lng)
+        .then((data) => setWeatherData(data));
+
+      getPlacesData(type, bounds.sw, bounds.ne)
+        .then((data) => {
+          setPlaces(data.filter((place) => place.name && place.num_reviews > 0));
+          setFilteredPlaces([]);
+          setRating('');
+          setIsLoading(false);
+        });
+    }
+  }, [bounds, type]);
+
+  const onLoad = (autoC) => setAutocomplete(autoC);
+
+  const onPlaceChanged = () => {
+    const lat = autocomplete.getPlace().geometry.location.lat();
+    const lng = autocomplete.getPlace().geometry.location.lng();
+
+    setCoords({ lat, lng });
+  };
 
   return (
     <>
       <CssBaseline />
-      <HeaderNoSearch />
-      <Grid style={{ width: '100%' }}>
-        <Grid>
-          <main>
-            {/* Hero unit */}
-            <div className="hero-container">
-              <video src="/videos/video-1.mp4" autoPlay loop muted />
-              <Container maxWidth="sm">
-                <Typography component="h2" variant="h2" align="center" color="textPrimary" gutterBottom>
-                  <h1>Adventure Awaits</h1>
-                </Typography>
-                <Typography variant="h5" align="center" color="textSecondary" paragraph>
-                  <h3>Plan your travel ahead by using our Tour Guide Web Application.</h3>
-                </Typography>
-                <div className={classes.heroButtons}>
-                  <Grid container spacing={2} justifyContent="center">
-                    <Grid item>
-                      <Button href="/webapp" variant="contained" color="primary">
-                        <h2>GET STARTED NOW</h2>
-                      </Button>
-                    </Grid>
-                  </Grid>
-                </div>
-              </Container>
-            </div>
-          </main>
+      <Header onPlaceChanged={onPlaceChanged} onLoad={onLoad} />
+      <Grid container spacing={3} style={{ width: '100%' }}>
+        <Grid item xs={12} md={4}>
+          <List
+            isLoading={isLoading}
+            childClicked={childClicked}
+            places={filteredPlaces.length ? filteredPlaces : places}
+            type={type}
+            setType={setType}
+            rating={rating}
+            setRating={setRating}
+          />
+        </Grid>
+        <Grid item xs={12} md={8} style={{ display: 'flex', justifyContent: 'center', alignItems: 'center' }}>
+          <Map
+            setChildClicked={setChildClicked}
+            setBounds={setBounds}
+            setCoords={setCoords}
+            coords={coords}
+            places={filteredPlaces.length ? filteredPlaces : places}
+            weatherData={weatherData}
+          />
         </Grid>
       </Grid>
     </>
   );
-}
+};
 
-export default Home;
+export default Webapp;

@@ -10,7 +10,7 @@ import MoreIcon from '@material-ui/icons/MoreVert';
 import HomeIcon from '@material-ui/icons/Home';
 import InfoIcon from '@material-ui/icons/Info';
 import ContactMailIcon from '@material-ui/icons/ContactMail';
-import DynamicFeedIcon from '@material-ui/icons/DynamicFeed';
+// import DynamicFeedIcon from '@material-ui/icons/DynamicFeed';
 import { Link } from 'react-router-dom';
 
 const useStyles = makeStyles((theme) => ({
@@ -149,14 +149,14 @@ const Header = () => {
         </IconButton>
         <p>Contact</p>
       </MenuItem>
-      <MenuItem component={Link} to="/webapp">
+      {/* <MenuItem component={Link} to="/webapp">
         <IconButton aria-label="show 0 new Blogs" color="inherit">
           <Badge badgeContent={0} color="secondary">
             <DynamicFeedIcon />
           </Badge>
         </IconButton>
         <p>Web App</p>
-      </MenuItem>
+      </MenuItem> */}
     </Menu>
 
   );
@@ -194,14 +194,14 @@ const Header = () => {
               </IconButton>
               <p>Contact</p>
             </MenuItem>
-            <MenuItem component={Link} to="/webapp">
+            {/* <MenuItem component={Link} to="/webapp">
               <IconButton aria-label="show 0 new Tour App" color="inherit">
                 <Badge badgeContent={0} color="secondary">
                   <DynamicFeedIcon />
                 </Badge>
               </IconButton>
               <p>Web App</p>
-            </MenuItem>
+            </MenuItem> */}
           </div>
           <div className={classes.sectionMobile}>
             <IconButton
